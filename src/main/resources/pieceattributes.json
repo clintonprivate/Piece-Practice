@@ -1,0 +1,11 @@
+{
+    "piece_attributes": {
+      "key_signatures": {
+         "0": "d"
+      },
+      "time_signatures": "4/4",
+      "largest_interval": 6,
+      "largest_chord_quantity": 3,
+      "accidentals": true
+    }
+  }
