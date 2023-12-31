@@ -10,308 +10,432 @@
 | D major | Treble clef | Single note | Intervals of 2 | Quarter note |
 | D major | Treble clef | Single note | Intervals of 2 | Eighth note |
 | D major | Treble clef | Single note | Intervals of 2 | Sixteenth note |
+| D major | Treble clef | Single note | Intervals of 2 | With ties |
+| D major | Treble clef | Single note | Intervals of 2 | With dotted notes |
 | D major | Treble clef | Single note | Intervals of 3 | Whole note |
 | D major | Treble clef | Single note | Intervals of 3 | Half note |
 | D major | Treble clef | Single note | Intervals of 3 | Quarter note |
 | D major | Treble clef | Single note | Intervals of 3 | Eighth note |
 | D major | Treble clef | Single note | Intervals of 3 | Sixteenth note |
+| D major | Treble clef | Single note | Intervals of 3 | With ties |
+| D major | Treble clef | Single note | Intervals of 3 | With dotted notes |
 | D major | Treble clef | Single note | Intervals of 4 | Whole note |
 | D major | Treble clef | Single note | Intervals of 4 | Half note |
 | D major | Treble clef | Single note | Intervals of 4 | Quarter note |
 | D major | Treble clef | Single note | Intervals of 4 | Eighth note |
 | D major | Treble clef | Single note | Intervals of 4 | Sixteenth note |
+| D major | Treble clef | Single note | Intervals of 4 | With ties |
+| D major | Treble clef | Single note | Intervals of 4 | With dotted notes |
 | D major | Treble clef | Single note | Intervals of 5 | Whole note |
 | D major | Treble clef | Single note | Intervals of 5 | Half note |
 | D major | Treble clef | Single note | Intervals of 5 | Quarter note |
 | D major | Treble clef | Single note | Intervals of 5 | Eighth note |
 | D major | Treble clef | Single note | Intervals of 5 | Sixteenth note |
+| D major | Treble clef | Single note | Intervals of 5 | With ties |
+| D major | Treble clef | Single note | Intervals of 5 | With dotted notes |
 | D major | Treble clef | Single note | Intervals of 6 | Whole note |
 | D major | Treble clef | Single note | Intervals of 6 | Half note |
 | D major | Treble clef | Single note | Intervals of 6 | Quarter note |
 | D major | Treble clef | Single note | Intervals of 6 | Eighth note |
 | D major | Treble clef | Single note | Intervals of 6 | Sixteenth note |
+| D major | Treble clef | Single note | Intervals of 6 | With ties |
+| D major | Treble clef | Single note | Intervals of 6 | With dotted notes |
 | D major | Treble clef | Single note | Intervals of 7 | Whole note |
 | D major | Treble clef | Single note | Intervals of 7 | Half note |
 | D major | Treble clef | Single note | Intervals of 7 | Quarter note |
 | D major | Treble clef | Single note | Intervals of 7 | Eighth note |
 | D major | Treble clef | Single note | Intervals of 7 | Sixteenth note |
+| D major | Treble clef | Single note | Intervals of 7 | With ties |
+| D major | Treble clef | Single note | Intervals of 7 | With dotted notes |
 | D major | Treble clef | Diad | Intervals of 1 | Whole note |
 | D major | Treble clef | Diad | Intervals of 1 | Half note |
 | D major | Treble clef | Diad | Intervals of 1 | Quarter note |
 | D major | Treble clef | Diad | Intervals of 1 | Eighth note |
 | D major | Treble clef | Diad | Intervals of 1 | Sixteenth note |
+| D major | Treble clef | Diad | Intervals of 1 | With ties |
+| D major | Treble clef | Diad | Intervals of 1 | With dotted notes |
 | D major | Treble clef | Diad | Intervals of 2 | Whole note |
 | D major | Treble clef | Diad | Intervals of 2 | Half note |
 | D major | Treble clef | Diad | Intervals of 2 | Quarter note |
 | D major | Treble clef | Diad | Intervals of 2 | Eighth note |
 | D major | Treble clef | Diad | Intervals of 2 | Sixteenth note |
+| D major | Treble clef | Diad | Intervals of 2 | With ties |
+| D major | Treble clef | Diad | Intervals of 2 | With dotted notes |
 | D major | Treble clef | Diad | Intervals of 3 | Whole note |
 | D major | Treble clef | Diad | Intervals of 3 | Half note |
 | D major | Treble clef | Diad | Intervals of 3 | Quarter note |
 | D major | Treble clef | Diad | Intervals of 3 | Eighth note |
 | D major | Treble clef | Diad | Intervals of 3 | Sixteenth note |
+| D major | Treble clef | Diad | Intervals of 3 | With ties |
+| D major | Treble clef | Diad | Intervals of 3 | With dotted notes |
 | D major | Treble clef | Diad | Intervals of 4 | Whole note |
 | D major | Treble clef | Diad | Intervals of 4 | Half note |
 | D major | Treble clef | Diad | Intervals of 4 | Quarter note |
 | D major | Treble clef | Diad | Intervals of 4 | Eighth note |
 | D major | Treble clef | Diad | Intervals of 4 | Sixteenth note |
+| D major | Treble clef | Diad | Intervals of 4 | With ties |
+| D major | Treble clef | Diad | Intervals of 4 | With dotted notes |
 | D major | Treble clef | Diad | Intervals of 5 | Whole note |
 | D major | Treble clef | Diad | Intervals of 5 | Half note |
 | D major | Treble clef | Diad | Intervals of 5 | Quarter note |
 | D major | Treble clef | Diad | Intervals of 5 | Eighth note |
 | D major | Treble clef | Diad | Intervals of 5 | Sixteenth note |
+| D major | Treble clef | Diad | Intervals of 5 | With ties |
+| D major | Treble clef | Diad | Intervals of 5 | With dotted notes |
 | D major | Treble clef | Diad | Intervals of 6 | Whole note |
 | D major | Treble clef | Diad | Intervals of 6 | Half note |
 | D major | Treble clef | Diad | Intervals of 6 | Quarter note |
 | D major | Treble clef | Diad | Intervals of 6 | Eighth note |
 | D major | Treble clef | Diad | Intervals of 6 | Sixteenth note |
+| D major | Treble clef | Diad | Intervals of 6 | With ties |
+| D major | Treble clef | Diad | Intervals of 6 | With dotted notes |
 | D major | Treble clef | Diad | Intervals of 7 | Whole note |
 | D major | Treble clef | Diad | Intervals of 7 | Half note |
 | D major | Treble clef | Diad | Intervals of 7 | Quarter note |
 | D major | Treble clef | Diad | Intervals of 7 | Eighth note |
 | D major | Treble clef | Diad | Intervals of 7 | Sixteenth note |
+| D major | Treble clef | Diad | Intervals of 7 | With ties |
+| D major | Treble clef | Diad | Intervals of 7 | With dotted notes |
 | D major | Treble clef | Triad | Intervals of 1 | Whole note |
 | D major | Treble clef | Triad | Intervals of 1 | Half note |
 | D major | Treble clef | Triad | Intervals of 1 | Quarter note |
 | D major | Treble clef | Triad | Intervals of 1 | Eighth note |
 | D major | Treble clef | Triad | Intervals of 1 | Sixteenth note |
+| D major | Treble clef | Triad | Intervals of 1 | With ties |
+| D major | Treble clef | Triad | Intervals of 1 | With dotted notes |
 | D major | Treble clef | Triad | Intervals of 2 | Whole note |
 | D major | Treble clef | Triad | Intervals of 2 | Half note |
 | D major | Treble clef | Triad | Intervals of 2 | Quarter note |
 | D major | Treble clef | Triad | Intervals of 2 | Eighth note |
 | D major | Treble clef | Triad | Intervals of 2 | Sixteenth note |
+| D major | Treble clef | Triad | Intervals of 2 | With ties |
+| D major | Treble clef | Triad | Intervals of 2 | With dotted notes |
 | D major | Treble clef | Triad | Intervals of 3 | Whole note |
 | D major | Treble clef | Triad | Intervals of 3 | Half note |
 | D major | Treble clef | Triad | Intervals of 3 | Quarter note |
 | D major | Treble clef | Triad | Intervals of 3 | Eighth note |
 | D major | Treble clef | Triad | Intervals of 3 | Sixteenth note |
+| D major | Treble clef | Triad | Intervals of 3 | With ties |
+| D major | Treble clef | Triad | Intervals of 3 | With dotted notes |
 | D major | Treble clef | Triad | Intervals of 4 | Whole note |
 | D major | Treble clef | Triad | Intervals of 4 | Half note |
 | D major | Treble clef | Triad | Intervals of 4 | Quarter note |
 | D major | Treble clef | Triad | Intervals of 4 | Eighth note |
 | D major | Treble clef | Triad | Intervals of 4 | Sixteenth note |
+| D major | Treble clef | Triad | Intervals of 4 | With ties |
+| D major | Treble clef | Triad | Intervals of 4 | With dotted notes |
 | D major | Treble clef | Triad | Intervals of 5 | Whole note |
 | D major | Treble clef | Triad | Intervals of 5 | Half note |
 | D major | Treble clef | Triad | Intervals of 5 | Quarter note |
 | D major | Treble clef | Triad | Intervals of 5 | Eighth note |
 | D major | Treble clef | Triad | Intervals of 5 | Sixteenth note |
+| D major | Treble clef | Triad | Intervals of 5 | With ties |
+| D major | Treble clef | Triad | Intervals of 5 | With dotted notes |
 | D major | Treble clef | Triad | Intervals of 6 | Whole note |
 | D major | Treble clef | Triad | Intervals of 6 | Half note |
 | D major | Treble clef | Triad | Intervals of 6 | Quarter note |
 | D major | Treble clef | Triad | Intervals of 6 | Eighth note |
 | D major | Treble clef | Triad | Intervals of 6 | Sixteenth note |
+| D major | Treble clef | Triad | Intervals of 6 | With ties |
+| D major | Treble clef | Triad | Intervals of 6 | With dotted notes |
 | D major | Treble clef | Triad | Intervals of 7 | Whole note |
 | D major | Treble clef | Triad | Intervals of 7 | Half note |
 | D major | Treble clef | Triad | Intervals of 7 | Quarter note |
 | D major | Treble clef | Triad | Intervals of 7 | Eighth note |
 | D major | Treble clef | Triad | Intervals of 7 | Sixteenth note |
+| D major | Treble clef | Triad | Intervals of 7 | With ties |
+| D major | Treble clef | Triad | Intervals of 7 | With dotted notes |
 | D major | Bass clef | Single note | Intervals of 1 | Whole note |
 | D major | Bass clef | Single note | Intervals of 1 | Half note |
 | D major | Bass clef | Single note | Intervals of 1 | Quarter note |
 | D major | Bass clef | Single note | Intervals of 1 | Eighth note |
 | D major | Bass clef | Single note | Intervals of 1 | Sixteenth note |
+| D major | Bass clef | Single note | Intervals of 1 | With ties |
+| D major | Bass clef | Single note | Intervals of 1 | With dotted notes |
 | D major | Bass clef | Single note | Intervals of 2 | Whole note |
 | D major | Bass clef | Single note | Intervals of 2 | Half note |
 | D major | Bass clef | Single note | Intervals of 2 | Quarter note |
 | D major | Bass clef | Single note | Intervals of 2 | Eighth note |
 | D major | Bass clef | Single note | Intervals of 2 | Sixteenth note |
+| D major | Bass clef | Single note | Intervals of 2 | With ties |
+| D major | Bass clef | Single note | Intervals of 2 | With dotted notes |
 | D major | Bass clef | Single note | Intervals of 3 | Whole note |
 | D major | Bass clef | Single note | Intervals of 3 | Half note |
 | D major | Bass clef | Single note | Intervals of 3 | Quarter note |
 | D major | Bass clef | Single note | Intervals of 3 | Eighth note |
 | D major | Bass clef | Single note | Intervals of 3 | Sixteenth note |
+| D major | Bass clef | Single note | Intervals of 3 | With ties |
+| D major | Bass clef | Single note | Intervals of 3 | With dotted notes |
 | D major | Bass clef | Single note | Intervals of 4 | Whole note |
 | D major | Bass clef | Single note | Intervals of 4 | Half note |
 | D major | Bass clef | Single note | Intervals of 4 | Quarter note |
 | D major | Bass clef | Single note | Intervals of 4 | Eighth note |
 | D major | Bass clef | Single note | Intervals of 4 | Sixteenth note |
+| D major | Bass clef | Single note | Intervals of 4 | With ties |
+| D major | Bass clef | Single note | Intervals of 4 | With dotted notes |
 | D major | Bass clef | Single note | Intervals of 5 | Whole note |
 | D major | Bass clef | Single note | Intervals of 5 | Half note |
 | D major | Bass clef | Single note | Intervals of 5 | Quarter note |
 | D major | Bass clef | Single note | Intervals of 5 | Eighth note |
 | D major | Bass clef | Single note | Intervals of 5 | Sixteenth note |
+| D major | Bass clef | Single note | Intervals of 5 | With ties |
+| D major | Bass clef | Single note | Intervals of 5 | With dotted notes |
 | D major | Bass clef | Single note | Intervals of 6 | Whole note |
 | D major | Bass clef | Single note | Intervals of 6 | Half note |
 | D major | Bass clef | Single note | Intervals of 6 | Quarter note |
 | D major | Bass clef | Single note | Intervals of 6 | Eighth note |
 | D major | Bass clef | Single note | Intervals of 6 | Sixteenth note |
+| D major | Bass clef | Single note | Intervals of 6 | With ties |
+| D major | Bass clef | Single note | Intervals of 6 | With dotted notes |
 | D major | Bass clef | Single note | Intervals of 7 | Whole note |
 | D major | Bass clef | Single note | Intervals of 7 | Half note |
 | D major | Bass clef | Single note | Intervals of 7 | Quarter note |
 | D major | Bass clef | Single note | Intervals of 7 | Eighth note |
 | D major | Bass clef | Single note | Intervals of 7 | Sixteenth note |
+| D major | Bass clef | Single note | Intervals of 7 | With ties |
+| D major | Bass clef | Single note | Intervals of 7 | With dotted notes |
 | D major | Bass clef | Diad | Intervals of 1 | Whole note |
 | D major | Bass clef | Diad | Intervals of 1 | Half note |
 | D major | Bass clef | Diad | Intervals of 1 | Quarter note |
 | D major | Bass clef | Diad | Intervals of 1 | Eighth note |
 | D major | Bass clef | Diad | Intervals of 1 | Sixteenth note |
+| D major | Bass clef | Diad | Intervals of 1 | With ties |
+| D major | Bass clef | Diad | Intervals of 1 | With dotted notes |
 | D major | Bass clef | Diad | Intervals of 2 | Whole note |
 | D major | Bass clef | Diad | Intervals of 2 | Half note |
 | D major | Bass clef | Diad | Intervals of 2 | Quarter note |
 | D major | Bass clef | Diad | Intervals of 2 | Eighth note |
 | D major | Bass clef | Diad | Intervals of 2 | Sixteenth note |
+| D major | Bass clef | Diad | Intervals of 2 | With ties |
+| D major | Bass clef | Diad | Intervals of 2 | With dotted notes |
 | D major | Bass clef | Diad | Intervals of 3 | Whole note |
 | D major | Bass clef | Diad | Intervals of 3 | Half note |
 | D major | Bass clef | Diad | Intervals of 3 | Quarter note |
 | D major | Bass clef | Diad | Intervals of 3 | Eighth note |
 | D major | Bass clef | Diad | Intervals of 3 | Sixteenth note |
+| D major | Bass clef | Diad | Intervals of 3 | With ties |
+| D major | Bass clef | Diad | Intervals of 3 | With dotted notes |
 | D major | Bass clef | Diad | Intervals of 4 | Whole note |
 | D major | Bass clef | Diad | Intervals of 4 | Half note |
 | D major | Bass clef | Diad | Intervals of 4 | Quarter note |
 | D major | Bass clef | Diad | Intervals of 4 | Eighth note |
 | D major | Bass clef | Diad | Intervals of 4 | Sixteenth note |
+| D major | Bass clef | Diad | Intervals of 4 | With ties |
+| D major | Bass clef | Diad | Intervals of 4 | With dotted notes |
 | D major | Bass clef | Diad | Intervals of 5 | Whole note |
 | D major | Bass clef | Diad | Intervals of 5 | Half note |
 | D major | Bass clef | Diad | Intervals of 5 | Quarter note |
 | D major | Bass clef | Diad | Intervals of 5 | Eighth note |
 | D major | Bass clef | Diad | Intervals of 5 | Sixteenth note |
+| D major | Bass clef | Diad | Intervals of 5 | With ties |
+| D major | Bass clef | Diad | Intervals of 5 | With dotted notes |
 | D major | Bass clef | Diad | Intervals of 6 | Whole note |
 | D major | Bass clef | Diad | Intervals of 6 | Half note |
 | D major | Bass clef | Diad | Intervals of 6 | Quarter note |
 | D major | Bass clef | Diad | Intervals of 6 | Eighth note |
 | D major | Bass clef | Diad | Intervals of 6 | Sixteenth note |
+| D major | Bass clef | Diad | Intervals of 6 | With ties |
+| D major | Bass clef | Diad | Intervals of 6 | With dotted notes |
 | D major | Bass clef | Diad | Intervals of 7 | Whole note |
 | D major | Bass clef | Diad | Intervals of 7 | Half note |
 | D major | Bass clef | Diad | Intervals of 7 | Quarter note |
 | D major | Bass clef | Diad | Intervals of 7 | Eighth note |
 | D major | Bass clef | Diad | Intervals of 7 | Sixteenth note |
+| D major | Bass clef | Diad | Intervals of 7 | With ties |
+| D major | Bass clef | Diad | Intervals of 7 | With dotted notes |
 | D major | Bass clef | Triad | Intervals of 1 | Whole note |
 | D major | Bass clef | Triad | Intervals of 1 | Half note |
 | D major | Bass clef | Triad | Intervals of 1 | Quarter note |
 | D major | Bass clef | Triad | Intervals of 1 | Eighth note |
 | D major | Bass clef | Triad | Intervals of 1 | Sixteenth note |
+| D major | Bass clef | Triad | Intervals of 1 | With ties |
+| D major | Bass clef | Triad | Intervals of 1 | With dotted notes |
 | D major | Bass clef | Triad | Intervals of 2 | Whole note |
 | D major | Bass clef | Triad | Intervals of 2 | Half note |
 | D major | Bass clef | Triad | Intervals of 2 | Quarter note |
 | D major | Bass clef | Triad | Intervals of 2 | Eighth note |
 | D major | Bass clef | Triad | Intervals of 2 | Sixteenth note |
+| D major | Bass clef | Triad | Intervals of 2 | With ties |
+| D major | Bass clef | Triad | Intervals of 2 | With dotted notes |
 | D major | Bass clef | Triad | Intervals of 3 | Whole note |
 | D major | Bass clef | Triad | Intervals of 3 | Half note |
 | D major | Bass clef | Triad | Intervals of 3 | Quarter note |
 | D major | Bass clef | Triad | Intervals of 3 | Eighth note |
 | D major | Bass clef | Triad | Intervals of 3 | Sixteenth note |
+| D major | Bass clef | Triad | Intervals of 3 | With ties |
+| D major | Bass clef | Triad | Intervals of 3 | With dotted notes |
 | D major | Bass clef | Triad | Intervals of 4 | Whole note |
 | D major | Bass clef | Triad | Intervals of 4 | Half note |
 | D major | Bass clef | Triad | Intervals of 4 | Quarter note |
 | D major | Bass clef | Triad | Intervals of 4 | Eighth note |
 | D major | Bass clef | Triad | Intervals of 4 | Sixteenth note |
+| D major | Bass clef | Triad | Intervals of 4 | With ties |
+| D major | Bass clef | Triad | Intervals of 4 | With dotted notes |
 | D major | Bass clef | Triad | Intervals of 5 | Whole note |
 | D major | Bass clef | Triad | Intervals of 5 | Half note |
 | D major | Bass clef | Triad | Intervals of 5 | Quarter note |
 | D major | Bass clef | Triad | Intervals of 5 | Eighth note |
 | D major | Bass clef | Triad | Intervals of 5 | Sixteenth note |
+| D major | Bass clef | Triad | Intervals of 5 | With ties |
+| D major | Bass clef | Triad | Intervals of 5 | With dotted notes |
 | D major | Bass clef | Triad | Intervals of 6 | Whole note |
 | D major | Bass clef | Triad | Intervals of 6 | Half note |
 | D major | Bass clef | Triad | Intervals of 6 | Quarter note |
 | D major | Bass clef | Triad | Intervals of 6 | Eighth note |
 | D major | Bass clef | Triad | Intervals of 6 | Sixteenth note |
+| D major | Bass clef | Triad | Intervals of 6 | With ties |
+| D major | Bass clef | Triad | Intervals of 6 | With dotted notes |
 | D major | Bass clef | Triad | Intervals of 7 | Whole note |
 | D major | Bass clef | Triad | Intervals of 7 | Half note |
 | D major | Bass clef | Triad | Intervals of 7 | Quarter note |
 | D major | Bass clef | Triad | Intervals of 7 | Eighth note |
 | D major | Bass clef | Triad | Intervals of 7 | Sixteenth note |
+| D major | Bass clef | Triad | Intervals of 7 | With ties |
+| D major | Bass clef | Triad | Intervals of 7 | With dotted notes |
 | D major | Treble and bass clef | Single note | Intervals of 1 | Whole note |
 | D major | Treble and bass clef | Single note | Intervals of 1 | Half note |
 | D major | Treble and bass clef | Single note | Intervals of 1 | Quarter note |
 | D major | Treble and bass clef | Single note | Intervals of 1 | Eighth note |
 | D major | Treble and bass clef | Single note | Intervals of 1 | Sixteenth note |
+| D major | Treble and bass clef | Single note | Intervals of 1 | With ties |
+| D major | Treble and bass clef | Single note | Intervals of 1 | With dotted notes |
 | D major | Treble and bass clef | Single note | Intervals of 2 | Whole note |
 | D major | Treble and bass clef | Single note | Intervals of 2 | Half note |
 | D major | Treble and bass clef | Single note | Intervals of 2 | Quarter note |
 | D major | Treble and bass clef | Single note | Intervals of 2 | Eighth note |
 | D major | Treble and bass clef | Single note | Intervals of 2 | Sixteenth note |
+| D major | Treble and bass clef | Single note | Intervals of 2 | With ties |
+| D major | Treble and bass clef | Single note | Intervals of 2 | With dotted notes |
 | D major | Treble and bass clef | Single note | Intervals of 3 | Whole note |
 | D major | Treble and bass clef | Single note | Intervals of 3 | Half note |
 | D major | Treble and bass clef | Single note | Intervals of 3 | Quarter note |
 | D major | Treble and bass clef | Single note | Intervals of 3 | Eighth note |
 | D major | Treble and bass clef | Single note | Intervals of 3 | Sixteenth note |
+| D major | Treble and bass clef | Single note | Intervals of 3 | With ties |
+| D major | Treble and bass clef | Single note | Intervals of 3 | With dotted notes |
 | D major | Treble and bass clef | Single note | Intervals of 4 | Whole note |
 | D major | Treble and bass clef | Single note | Intervals of 4 | Half note |
 | D major | Treble and bass clef | Single note | Intervals of 4 | Quarter note |
 | D major | Treble and bass clef | Single note | Intervals of 4 | Eighth note |
 | D major | Treble and bass clef | Single note | Intervals of 4 | Sixteenth note |
+| D major | Treble and bass clef | Single note | Intervals of 4 | With ties |
+| D major | Treble and bass clef | Single note | Intervals of 4 | With dotted notes |
 | D major | Treble and bass clef | Single note | Intervals of 5 | Whole note |
 | D major | Treble and bass clef | Single note | Intervals of 5 | Half note |
 | D major | Treble and bass clef | Single note | Intervals of 5 | Quarter note |
 | D major | Treble and bass clef | Single note | Intervals of 5 | Eighth note |
 | D major | Treble and bass clef | Single note | Intervals of 5 | Sixteenth note |
+| D major | Treble and bass clef | Single note | Intervals of 5 | With ties |
+| D major | Treble and bass clef | Single note | Intervals of 5 | With dotted notes |
 | D major | Treble and bass clef | Single note | Intervals of 6 | Whole note |
 | D major | Treble and bass clef | Single note | Intervals of 6 | Half note |
 | D major | Treble and bass clef | Single note | Intervals of 6 | Quarter note |
 | D major | Treble and bass clef | Single note | Intervals of 6 | Eighth note |
 | D major | Treble and bass clef | Single note | Intervals of 6 | Sixteenth note |
+| D major | Treble and bass clef | Single note | Intervals of 6 | With ties |
+| D major | Treble and bass clef | Single note | Intervals of 6 | With dotted notes |
 | D major | Treble and bass clef | Single note | Intervals of 7 | Whole note |
 | D major | Treble and bass clef | Single note | Intervals of 7 | Half note |
 | D major | Treble and bass clef | Single note | Intervals of 7 | Quarter note |
 | D major | Treble and bass clef | Single note | Intervals of 7 | Eighth note |
 | D major | Treble and bass clef | Single note | Intervals of 7 | Sixteenth note |
+| D major | Treble and bass clef | Single note | Intervals of 7 | With ties |
+| D major | Treble and bass clef | Single note | Intervals of 7 | With dotted notes |
 | D major | Treble and bass clef | Diad | Intervals of 1 | Whole note |
 | D major | Treble and bass clef | Diad | Intervals of 1 | Half note |
 | D major | Treble and bass clef | Diad | Intervals of 1 | Quarter note |
 | D major | Treble and bass clef | Diad | Intervals of 1 | Eighth note |
 | D major | Treble and bass clef | Diad | Intervals of 1 | Sixteenth note |
+| D major | Treble and bass clef | Diad | Intervals of 1 | With ties |
+| D major | Treble and bass clef | Diad | Intervals of 1 | With dotted notes |
 | D major | Treble and bass clef | Diad | Intervals of 2 | Whole note |
 | D major | Treble and bass clef | Diad | Intervals of 2 | Half note |
 | D major | Treble and bass clef | Diad | Intervals of 2 | Quarter note |
 | D major | Treble and bass clef | Diad | Intervals of 2 | Eighth note |
 | D major | Treble and bass clef | Diad | Intervals of 2 | Sixteenth note |
+| D major | Treble and bass clef | Diad | Intervals of 2 | With ties |
+| D major | Treble and bass clef | Diad | Intervals of 2 | With dotted notes |
 | D major | Treble and bass clef | Diad | Intervals of 3 | Whole note |
 | D major | Treble and bass clef | Diad | Intervals of 3 | Half note |
 | D major | Treble and bass clef | Diad | Intervals of 3 | Quarter note |
 | D major | Treble and bass clef | Diad | Intervals of 3 | Eighth note |
 | D major | Treble and bass clef | Diad | Intervals of 3 | Sixteenth note |
+| D major | Treble and bass clef | Diad | Intervals of 3 | With ties |
+| D major | Treble and bass clef | Diad | Intervals of 3 | With dotted notes |
 | D major | Treble and bass clef | Diad | Intervals of 4 | Whole note |
 | D major | Treble and bass clef | Diad | Intervals of 4 | Half note |
 | D major | Treble and bass clef | Diad | Intervals of 4 | Quarter note |
 | D major | Treble and bass clef | Diad | Intervals of 4 | Eighth note |
 | D major | Treble and bass clef | Diad | Intervals of 4 | Sixteenth note |
+| D major | Treble and bass clef | Diad | Intervals of 4 | With ties |
+| D major | Treble and bass clef | Diad | Intervals of 4 | With dotted notes |
 | D major | Treble and bass clef | Diad | Intervals of 5 | Whole note |
 | D major | Treble and bass clef | Diad | Intervals of 5 | Half note |
 | D major | Treble and bass clef | Diad | Intervals of 5 | Quarter note |
 | D major | Treble and bass clef | Diad | Intervals of 5 | Eighth note |
 | D major | Treble and bass clef | Diad | Intervals of 5 | Sixteenth note |
+| D major | Treble and bass clef | Diad | Intervals of 5 | With ties |
+| D major | Treble and bass clef | Diad | Intervals of 5 | With dotted notes |
 | D major | Treble and bass clef | Diad | Intervals of 6 | Whole note |
 | D major | Treble and bass clef | Diad | Intervals of 6 | Half note |
 | D major | Treble and bass clef | Diad | Intervals of 6 | Quarter note |
 | D major | Treble and bass clef | Diad | Intervals of 6 | Eighth note |
 | D major | Treble and bass clef | Diad | Intervals of 6 | Sixteenth note |
+| D major | Treble and bass clef | Diad | Intervals of 6 | With ties |
+| D major | Treble and bass clef | Diad | Intervals of 6 | With dotted notes |
 | D major | Treble and bass clef | Diad | Intervals of 7 | Whole note |
 | D major | Treble and bass clef | Diad | Intervals of 7 | Half note |
 | D major | Treble and bass clef | Diad | Intervals of 7 | Quarter note |
 | D major | Treble and bass clef | Diad | Intervals of 7 | Eighth note |
 | D major | Treble and bass clef | Diad | Intervals of 7 | Sixteenth note |
+| D major | Treble and bass clef | Diad | Intervals of 7 | With ties |
+| D major | Treble and bass clef | Diad | Intervals of 7 | With dotted notes |
 | D major | Treble and bass clef | Triad | Intervals of 1 | Whole note |
 | D major | Treble and bass clef | Triad | Intervals of 1 | Half note |
 | D major | Treble and bass clef | Triad | Intervals of 1 | Quarter note |
 | D major | Treble and bass clef | Triad | Intervals of 1 | Eighth note |
 | D major | Treble and bass clef | Triad | Intervals of 1 | Sixteenth note |
+| D major | Treble and bass clef | Triad | Intervals of 1 | With ties |
+| D major | Treble and bass clef | Triad | Intervals of 1 | With dotted notes |
 | D major | Treble and bass clef | Triad | Intervals of 2 | Whole note |
 | D major | Treble and bass clef | Triad | Intervals of 2 | Half note |
 | D major | Treble and bass clef | Triad | Intervals of 2 | Quarter note |
 | D major | Treble and bass clef | Triad | Intervals of 2 | Eighth note |
 | D major | Treble and bass clef | Triad | Intervals of 2 | Sixteenth note |
+| D major | Treble and bass clef | Triad | Intervals of 2 | With ties |
+| D major | Treble and bass clef | Triad | Intervals of 2 | With dotted notes |
 | D major | Treble and bass clef | Triad | Intervals of 3 | Whole note |
 | D major | Treble and bass clef | Triad | Intervals of 3 | Half note |
 | D major | Treble and bass clef | Triad | Intervals of 3 | Quarter note |
 | D major | Treble and bass clef | Triad | Intervals of 3 | Eighth note |
 | D major | Treble and bass clef | Triad | Intervals of 3 | Sixteenth note |
+| D major | Treble and bass clef | Triad | Intervals of 3 | With ties |
+| D major | Treble and bass clef | Triad | Intervals of 3 | With dotted notes |
 | D major | Treble and bass clef | Triad | Intervals of 4 | Whole note |
 | D major | Treble and bass clef | Triad | Intervals of 4 | Half note |
 | D major | Treble and bass clef | Triad | Intervals of 4 | Quarter note |
 | D major | Treble and bass clef | Triad | Intervals of 4 | Eighth note |
 | D major | Treble and bass clef | Triad | Intervals of 4 | Sixteenth note |
+| D major | Treble and bass clef | Triad | Intervals of 4 | With ties |
+| D major | Treble and bass clef | Triad | Intervals of 4 | With dotted notes |
 | D major | Treble and bass clef | Triad | Intervals of 5 | Whole note |
 | D major | Treble and bass clef | Triad | Intervals of 5 | Half note |
 | D major | Treble and bass clef | Triad | Intervals of 5 | Quarter note |
 | D major | Treble and bass clef | Triad | Intervals of 5 | Eighth note |
 | D major | Treble and bass clef | Triad | Intervals of 5 | Sixteenth note |
+| D major | Treble and bass clef | Triad | Intervals of 5 | With ties |
+| D major | Treble and bass clef | Triad | Intervals of 5 | With dotted notes |
 | D major | Treble and bass clef | Triad | Intervals of 6 | Whole note |
 | D major | Treble and bass clef | Triad | Intervals of 6 | Half note |
 | D major | Treble and bass clef | Triad | Intervals of 6 | Quarter note |
 | D major | Treble and bass clef | Triad | Intervals of 6 | Eighth note |
 | D major | Treble and bass clef | Triad | Intervals of 6 | Sixteenth note |
+| D major | Treble and bass clef | Triad | Intervals of 6 | With ties |
+| D major | Treble and bass clef | Triad | Intervals of 6 | With dotted notes |
 | D major | Treble and bass clef | Triad | Intervals of 7 | Whole note |
 | D major | Treble and bass clef | Triad | Intervals of 7 | Half note |
 | D major | Treble and bass clef | Triad | Intervals of 7 | Quarter note |
 | D major | Treble and bass clef | Triad | Intervals of 7 | Eighth note |
 | D major | Treble and bass clef | Triad | Intervals of 7 | Sixteenth note |
+| D major | Treble and bass clef | Triad | Intervals of 7 | With ties |
+| D major | Treble and bass clef | Triad | Intervals of 7 | With dotted notes |
