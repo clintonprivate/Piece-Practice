@@ -6,6 +6,9 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import javax.sound.midi.InvalidMidiDataException;
+import javax.sound.midi.MidiSystem;
+import javax.sound.midi.Sequence;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -75,6 +78,7 @@ public class HelperMethods {
 	}
 
 	protected void playTickSound(int tickType) {
+
 		try {
             AudioInputStream audioInputStream = null;
             if (tickType == 1) {
@@ -92,4 +96,26 @@ public class HelperMethods {
         	e.printStackTrace();
         }
 	}
+	
+	public Sequence convertBase64ToMidi(String midiBase64) {
+        // Convert Base64 string to byte array
+        byte[] midiByteArray = java.util.Base64.getDecoder().decode(midiBase64);
+
+        try {
+            // Create a Sequence from the byte array
+            return MidiSystem.getSequence(new java.io.ByteArrayInputStream(midiByteArray));
+        } catch (InvalidMidiDataException | java.io.IOException e) {
+            e.printStackTrace();
+        }
+
+        // Return null if conversion fails
+        return null;
+    }
+	
+	public static String getNoteName(int note) {
+        String[] noteNames = {"C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"};
+        int octave = (note / 12) - 1;
+        int noteIndex = note % 12;
+        return noteNames[noteIndex] + octave;
+    }
 }

@@ -47,8 +47,9 @@ public class PianoExercise extends JPanel {
 	private JLabel partText;
 	private int amountOfCorrectNotes;
 	private boolean listening = false;
-	private HelperMethods helperMethods = new HelperMethods();
+	private static HelperMethods helperMethods = new HelperMethods();
 	private boolean userStartedPlaying = false;
+	List<Long> correctNoteTimestamps;
 	
 	public PianoExercise(CardLayout layout) {
 		this.cardLayout = layout;
@@ -67,7 +68,8 @@ public class PianoExercise extends JPanel {
 		String[] melody = generateRandomMelody();
 		String sheetMusicBase64 = melody[0];
 		String midiBase64 = melody[1];
-		Sequence midi = convertBase64ToMidi(midiBase64);
+		Sequence midi = helperMethods.convertBase64ToMidi(midiBase64);
+		correctNoteTimestamps = extractNoteTimestamps(midi);
 		amountOfCorrectNotes = 0;
 		currentNote = 0;
 		currentNotePosition = 0;
@@ -176,17 +178,17 @@ public class PianoExercise extends JPanel {
 			                    int note = sm.getData1();
 			                    int velocity = sm.getData2();
 			                    if (sm.getCommand() == ShortMessage.NOTE_ON && velocity > 0 && currentNote <= allNotes.size() - 1) {
-			                    	String playedNote = getNoteName(note);
+			                    	String playedNote = helperMethods.getNoteName(note);
 			                    	long remainder = timeStamp % firstBeatInterval;
-			                    	if (remainder <= precisionTolerance || remainder >= (firstBeatInterval - precisionTolerance)) {
+			                    	if (userStartedPlaying == false && (remainder <= precisionTolerance || remainder >= (firstBeatInterval - precisionTolerance))) {
 			                    	    userStartedPlaying = true;
-			                    	    paintNextNote(playedNote);
+			                    	    startTrackingRhythm(playedNote);
 			                    	}
 			                    }
 			                }
 			            }
 			            
-			            @Override
+						@Override
 			            public void close() {
 			                // Close resources if needed
 			                synth.close();
@@ -200,6 +202,31 @@ public class PianoExercise extends JPanel {
 			        Thread.sleep(Long.MAX_VALUE);
 
 			    } catch (MidiUnavailableException | InterruptedException e) {
+			        e.printStackTrace();
+			    }
+			}
+		}).start();
+	}
+	
+	private void startTrackingRhythm(String playedNote) {
+		/*
+		 * 2. Set a timer in this method that after every
+		 * correct midi timestamp duration paint the next
+		 * note red.
+		 * 3. Take BPM into consideration.
+		 */
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+			    try {
+			    	int currentNote = 0;
+			    	while (true) {
+			    		currentNote++;
+			    		paintNextNote(playedNote);
+			    		long waitFor = correctNoteTimestamps.get(currentNote) / 10 - correctNoteTimestamps.get(currentNote - 1) / 10 - 25;
+			    		Thread.sleep(waitFor);
+	                }
+			    } catch (InterruptedException e) {
 			        e.printStackTrace();
 			    }
 			}
@@ -351,28 +378,6 @@ public class PianoExercise extends JPanel {
         return -1;
     }
 	
-	private static String getNoteName(int note) {
-        String[] noteNames = {"C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"};
-        int octave = (note / 12) - 1;
-        int noteIndex = note % 12;
-        return noteNames[noteIndex] + octave;
-    }
-	
-	private Sequence convertBase64ToMidi(String midiBase64) {
-        // Convert Base64 string to byte array
-        byte[] midiByteArray = java.util.Base64.getDecoder().decode(midiBase64);
-
-        try {
-            // Create a Sequence from the byte array
-            return MidiSystem.getSequence(new java.io.ByteArrayInputStream(midiByteArray));
-        } catch (InvalidMidiDataException | java.io.IOException e) {
-            e.printStackTrace();
-        }
-
-        // Return null if conversion fails
-        return null;
-    }
-	
 	static class NoteEvent implements Comparable<NoteEvent> {
         int note;
         long tick;
@@ -416,7 +421,7 @@ public class PianoExercise extends JPanel {
         // Convert note events to note names
         java.util.List<String> noteNames = new java.util.ArrayList<>();
         for (NoteEvent noteEvent : noteEvents) {
-            String noteName = getNoteName(noteEvent.note);
+            String noteName = helperMethods.getNoteName(noteEvent.note);
             noteNames.add(noteName);
         }
         return noteNames;
@@ -427,5 +432,39 @@ public class PianoExercise extends JPanel {
 		initializeComponents('a');
 	}
 
+	private List<Long> extractNoteTimestamps(Sequence sequence) {
+		// A sequence consists of tracks; each track contains MIDI events
+        Track[] tracks = sequence.getTracks();
+        List<Long> timestamps = new ArrayList<>();
+
+        // Iterate through tracks and extract timestamps of note events
+        for (Track track : tracks) {
+            for (int i = 0; i < track.size(); i++) {
+                MidiEvent event = track.get(i);
+                MidiMessage message = event.getMessage();
+
+                // Check if the MIDI message is a Note On event (Note Off events can also be considered)
+                if (message instanceof ShortMessage && ((ShortMessage) message).getCommand() == ShortMessage.NOTE_ON) {
+                    long timestamp = event.getTick();
+                    timestamps.add(timestamp);
+                }
+            }
+        }
+
+        return timestamps;
+	}
+	
+	private int roundToNearestThousand(long waitFor) {
+        // Divide the number by 1000 to get a decimal value
+        double divided = waitFor / 1000.0;
+        
+        // Round the decimal value to the nearest whole number
+        double rounded = Math.round(divided);
+        
+        // Multiply the rounded whole number by 1000 to get the nearest thousand
+        int result = (int) (rounded * 1000);
+        
+        return result;
+    }
 }
 
