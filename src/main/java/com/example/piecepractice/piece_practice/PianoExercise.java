@@ -168,16 +168,19 @@ public class PianoExercise extends JPanel {
 			        Receiver receiver = new Receiver() {
 			            @Override
 			            public void send(MidiMessage message, long timeStamp) {
-			                // Paint the next note
+			                // Paint the next note while handling rhythm tracking
+			            	long firstBeatInterval = 4000000L;
+			            	long precisionTolerance = 250000L;
 			                if (message instanceof ShortMessage) {
 			                    ShortMessage sm = (ShortMessage) message;
 			                    int note = sm.getData1();
 			                    int velocity = sm.getData2();
 			                    if (sm.getCommand() == ShortMessage.NOTE_ON && velocity > 0 && currentNote <= allNotes.size() - 1) {
 			                    	String playedNote = getNoteName(note);
-			                    	if ((helperMethods.currentBeat - 1) % 4 == 0) {
-			                    		userStartedPlaying = true;
-			                    		paintNextNote(playedNote);
+			                    	long remainder = timeStamp % firstBeatInterval;
+			                    	if (remainder <= precisionTolerance || remainder >= (firstBeatInterval - precisionTolerance)) {
+			                    	    userStartedPlaying = true;
+			                    	    paintNextNote(playedNote);
 			                    	}
 			                    }
 			                }

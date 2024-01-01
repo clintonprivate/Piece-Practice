@@ -12,6 +12,7 @@ import javax.sound.sampled.Clip;
 
 public class HelperMethods {
 	public int currentBeat = 0;
+	private boolean metronomeStarted = false;
 	
 	public void incrementLevel() {
 		try {
@@ -46,28 +47,31 @@ public class HelperMethods {
 	}
 	
 	public void startMetronome(int beatsPerMinute) {
-		int millisecondsPerBeat = 60000 / beatsPerMinute;
-	    Thread metronomeThread = new Thread(new Runnable() {
-	        @Override
-	        public void run() {
-	            try {
-	                while (true) {
-	                	if (currentBeat % 4 == 0) {
-	                		playTickSound(1);
-	                	}
-	                	else {
-	                		playTickSound(2);
-	                	}
-	                	currentBeat++;
-	                    Thread.sleep(millisecondsPerBeat);
-	                }
-	            } catch (InterruptedException e) {
-	                e.printStackTrace();
-	            }
-	        }
-	    });
+		if (metronomeStarted == false) {
+			metronomeStarted = true;
+			int millisecondsPerBeat = 60000 / beatsPerMinute;
+		    Thread metronomeThread = new Thread(new Runnable() {
+		        @Override
+		        public void run() {
+		            try {
+		                while (true) {
+		                	if (currentBeat % 4 == 0) {
+		                		playTickSound(1);
+		                	}
+		                	else {
+		                		playTickSound(2);
+		                	}
+		                	currentBeat++;
+		                    Thread.sleep(millisecondsPerBeat);
+		                }
+		            } catch (InterruptedException e) {
+		                e.printStackTrace();
+		            }
+		        }
+		    });
 
-	    metronomeThread.start();
+		    metronomeThread.start();
+		}
 	}
 
 	protected void playTickSound(int tickType) {
