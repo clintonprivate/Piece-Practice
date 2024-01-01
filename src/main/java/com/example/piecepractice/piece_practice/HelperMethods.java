@@ -11,7 +11,7 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
 public class HelperMethods {
-	private int currentBeat = 0;
+	public int currentBeat = 0;
 	
 	public void incrementLevel() {
 		try {

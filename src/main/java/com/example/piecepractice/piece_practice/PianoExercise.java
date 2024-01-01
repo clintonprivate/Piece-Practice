@@ -48,7 +48,7 @@ public class PianoExercise extends JPanel {
 	private int amountOfCorrectNotes;
 	private boolean listening = false;
 	private HelperMethods helperMethods = new HelperMethods();
-	private int currentBeat = 0;
+	private boolean userStartedPlaying = false;
 	
 	public PianoExercise(CardLayout layout) {
 		this.cardLayout = layout;
@@ -175,7 +175,10 @@ public class PianoExercise extends JPanel {
 			                    int velocity = sm.getData2();
 			                    if (sm.getCommand() == ShortMessage.NOTE_ON && velocity > 0 && currentNote <= allNotes.size() - 1) {
 			                    	String playedNote = getNoteName(note);
-		                        	paintNextNote(playedNote);
+			                    	if ((helperMethods.currentBeat - 1) % 4 == 0) {
+			                    		userStartedPlaying = true;
+			                    		paintNextNote(playedNote);
+			                    	}
 			                    }
 			                }
 			            }
@@ -415,7 +418,7 @@ public class PianoExercise extends JPanel {
         }
         return noteNames;
     }
-
+	
 	public void setLevel(int level) {
 		levelAttributes = helperMethods.getLevelAttributes(level);
 		initializeComponents('a');

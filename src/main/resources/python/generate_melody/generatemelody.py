@@ -6,20 +6,19 @@ from PIL import Image
 from music21 import stream, note, duration, clef, environment, key, pitch
 
 # Declare the attributes we are working with
-# levelAttributes = sys.argv[1]
-levelAttributes = "| D major | Treble clef | Single note | Intervals of 1 | Quarter note |"
+levelAttributes = sys.argv[1]
 environment.set('musescoreDirectPNGPath', "C:\\Program Files\\MuseScore 4\\bin\\MuseScore4.exe")
-basedirectory = "" #"src/main/resources/python/generate_melody/"
+basedirectory = "src/main/resources/python/generate_melody/"
 amountOfMeasures = 4
 beatsPerMeasure = 4
 amountOfBeats = amountOfMeasures * beatsPerMeasure
 durationDictionary = {
-    "| Whole note |":     [4],
-    "| Half note |":      [4, 2],
-    "| Quarter note |":   [4, 2, 1],
-    "| Eighth note |":    [4, 2, 1, 0.5],
-    "| Sixteenth note |": [4, 2, 1, 0.5, 0.25],
-    "| With ties |": [4, 2, 1, 0.5, 0.25],
+    "| Whole note |":        [4],
+    "| Half note |":         [4, 2],
+    "| Quarter note |":      [4, 2, 1],
+    "| Eighth note |":       [4, 2, 1, 0.5],
+    "| Sixteenth note |":    [4, 2, 1, 0.5, 0.25],
+    "| With ties |":         [4, 2, 1, 0.5, 0.25],
     "| With dotted notes |": [4, 2, 1, 0.5, 0.25]
 }
 
@@ -62,7 +61,7 @@ def generate_random_notes():
     lastNoteGenerated = random.choice(d_major_scale)
     entireMelodyDuration = 0
 
-    # Choose note durations and include ties by default in note generation
+    # Take ties setting into account during note generation
     if "| With ties |" in levelAttributes:
         while entireMelodyDuration < amountOfBeats:
             lastNotePosition = d_major_scale.index(lastNoteGenerated)
@@ -79,20 +78,27 @@ def generate_random_notes():
             lastNotePosition = newNotePosition
             entireMelodyDuration += randomDuration
     else:
-        while entireMelodyDuration < amountOfBeats:
-            lastNotePosition = d_major_scale.index(lastNoteGenerated)
-            newNotePosition = lastNotePosition + random.choice([1, -1]) * random.choice(intervalChoices)
-            while newNotePosition < 0 or newNotePosition > len(d_major_scale) - 1:
+        visualLength = 0
+        maxVisualLength = 128
+        for i in range(4):
+            if visualLength >= maxVisualLength:
+                break
+            measureDuration = 0
+            while measureDuration < 4:
+                lastNotePosition = d_major_scale.index(lastNoteGenerated)
                 newNotePosition = lastNotePosition + random.choice([1, -1]) * random.choice(intervalChoices)
-            new_note = note.Note(d_major_scale[newNotePosition])
-            randomDuration = random.choice(durationChoices)
-            while entireMelodyDuration + randomDuration > amountOfBeats:
+                while newNotePosition < 0 or newNotePosition > len(d_major_scale) - 1:
+                    newNotePosition = lastNotePosition + random.choice([1, -1]) * random.choice(intervalChoices)
+                new_note = note.Note(d_major_scale[newNotePosition])
                 randomDuration = random.choice(durationChoices)
-            new_note.duration = duration.Duration(randomDuration)
-            staff.append(new_note)
-            lastNoteGenerated = d_major_scale[newNotePosition]
-            lastNotePosition = newNotePosition
-            entireMelodyDuration += randomDuration
+                while measureDuration + randomDuration > 4:
+                    randomDuration = random.choice(durationChoices)
+                new_note.duration = duration.Duration(randomDuration)
+                staff.append(new_note)
+                lastNoteGenerated = d_major_scale[newNotePosition]
+                lastNotePosition = newNotePosition
+                measureDuration += randomDuration
+                visualLength += 1 / randomDuration
 
     notes_stream.append(staff)
     
