@@ -50,6 +50,7 @@ public class PianoExercise extends JPanel {
 	private static HelperMethods helperMethods = new HelperMethods();
 	private boolean userStartedPlaying = false;
 	List<Long> correctNoteTimestamps;
+	List<String[]> userInputs = new ArrayList<>();
 	
 	public PianoExercise(CardLayout layout) {
 		this.cardLayout = layout;
@@ -173,22 +174,22 @@ public class PianoExercise extends JPanel {
 			            public void send(MidiMessage message, long timeStamp) {
 			                // Paint the next note while handling rhythm tracking
 			            	long firstBeatInterval = 4000000L;
-			            	long precisionTolerance = 250000L;
+			            	long precisionTolerance = 300000L;
 			                if (message instanceof ShortMessage) {
 			                    ShortMessage sm = (ShortMessage) message;
 			                    int note = sm.getData1();
 			                    int velocity = sm.getData2();
 			                    if (sm.getCommand() == ShortMessage.NOTE_ON && velocity > 0 && currentNote <= allNotes.size() - 1) {
-			                    	String playedNote = helperMethods.getNoteName(note);
-			                    	System.out.println(timeStamp);
+			                    	String playedNote = helperMethods.getNoteName(note);			                    	
 			                    	long closestFirstBeat = Math.round((double) timeStamp / firstBeatInterval) * firstBeatInterval;
 			                    	long offset = timeStamp - closestFirstBeat;
-			                    	if (userStartedPlaying == false && offset > -precisionTolerance && offset < precisionTolerance) {
+			                    	if (userStartedPlaying == false && offset >= -precisionTolerance && offset <= precisionTolerance) {
 			                    	    userStartedPlaying = true;
-			                    	    startTrackingRhythm(playedNote, offset);
+			                    	    userInputs.add(new String[]{playedNote, Long.toString(timeStamp)});
+			                    	    startTrackingRhythm(offset, timeStamp);
 			                    	}
-			                    	else {
-			                    		
+			                    	else if (userStartedPlaying && userInputs.size() < currentNote + 1) {
+			                    		userInputs.add(new String[]{playedNote, Long.toString(timeStamp)});
 			                    	}
 			                    }
 			                }
@@ -214,22 +215,35 @@ public class PianoExercise extends JPanel {
 		}).start();
 	}
 	
-	private void startTrackingRhythm(String playedNote, long offset) {
-		/*
-		 * 1. 
-		 */
-		System.out.println(offset);
+	private void startTrackingRhythm(long firstBeatOffset, long startedAt) {
+		int precisionTolerance = 150000;
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
 			    try {
-			    	int currentNote = 0;
 			    	while (currentNote < correctNoteTimestamps.size()) {
-			    		currentNote++;
-			    		paintNextNote(playedNote);
+			    		long timeStamp = 0;
+			    		if (userInputs.size() >= currentNote) {
+				    		long beatInterval = correctNoteTimestamps.get(currentNote - 1) * 100;
+				    		timeStamp = Long.valueOf(userInputs.get(currentNote - 1)[1]) - startedAt;
+				    		long offset = beatInterval - timeStamp;
+				    		String playedNote = userInputs.get(currentNote)[0];
+				    		if (offset > -precisionTolerance && offset < precisionTolerance) {
+				    			// Rhythm is correct
+				    			System.out.println("Rhythm Correct");
+				    			paintNextNote(playedNote);
+				    		}
+			    		}
+			    		else if (userInputs.size() < currentNote + 1) {
+			    			// Rhythm is wrong
+			    			System.out.println("Rhythm Wrong");
+			    			userInputs.add(new String[]{"X", "-500000"});
+			    			paintNextNote("X");
+			    		}
+			    		System.out.println(timeStamp);
 			    		if (currentNote < correctNoteTimestamps.size()) {
 			    			long waitFor = correctNoteTimestamps.get(currentNote) / 10 - correctNoteTimestamps.get(currentNote - 1) / 10 - 25;
-				    		Thread.sleep(offset < 0 ? waitFor + offset / 10000 : waitFor - offset / 10000);
+				    		Thread.sleep(firstBeatOffset < 0 ? waitFor + firstBeatOffset / 10000 : waitFor - firstBeatOffset / 10000);
 			    		}
 	                }
 			    } catch (InterruptedException e) {
