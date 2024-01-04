@@ -73,6 +73,7 @@ public class PianoExercise extends JPanel {
 		amountOfCorrectNotes = 0;
 		currentNote = 0;
 		currentNotePosition = 0;
+		userStartedPlaying = false;
 		
 		byte[] imageBytes = Base64.getDecoder().decode(sheetMusicBase64);
         ByteArrayInputStream bis = new ByteArrayInputStream(imageBytes);
@@ -179,10 +180,15 @@ public class PianoExercise extends JPanel {
 			                    int velocity = sm.getData2();
 			                    if (sm.getCommand() == ShortMessage.NOTE_ON && velocity > 0 && currentNote <= allNotes.size() - 1) {
 			                    	String playedNote = helperMethods.getNoteName(note);
-			                    	long remainder = timeStamp % firstBeatInterval;
-			                    	if (userStartedPlaying == false && (remainder <= precisionTolerance || remainder >= (firstBeatInterval - precisionTolerance))) {
+			                    	System.out.println(timeStamp);
+			                    	long closestFirstBeat = Math.round((double) timeStamp / firstBeatInterval) * firstBeatInterval;
+			                    	long offset = timeStamp - closestFirstBeat;
+			                    	if (userStartedPlaying == false && offset > -precisionTolerance && offset < precisionTolerance) {
 			                    	    userStartedPlaying = true;
-			                    	    startTrackingRhythm(playedNote);
+			                    	    startTrackingRhythm(playedNote, offset);
+			                    	}
+			                    	else {
+			                    		
 			                    	}
 			                    }
 			                }
@@ -200,7 +206,7 @@ public class PianoExercise extends JPanel {
 			        // Sleep to keep the program running without consuming excessive CPU
 			        // Try to improve efficiency here to stop computer from overheating
 			        Thread.sleep(Long.MAX_VALUE);
-
+			        
 			    } catch (MidiUnavailableException | InterruptedException e) {
 			        e.printStackTrace();
 			    }
@@ -208,23 +214,23 @@ public class PianoExercise extends JPanel {
 		}).start();
 	}
 	
-	private void startTrackingRhythm(String playedNote) {
+	private void startTrackingRhythm(String playedNote, long offset) {
 		/*
-		 * 2. Set a timer in this method that after every
-		 * correct midi timestamp duration paint the next
-		 * note red.
-		 * 3. Take BPM into consideration.
+		 * 1. 
 		 */
+		System.out.println(offset);
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
 			    try {
 			    	int currentNote = 0;
-			    	while (true) {
+			    	while (currentNote < correctNoteTimestamps.size()) {
 			    		currentNote++;
 			    		paintNextNote(playedNote);
-			    		long waitFor = correctNoteTimestamps.get(currentNote) / 10 - correctNoteTimestamps.get(currentNote - 1) / 10 - 25;
-			    		Thread.sleep(waitFor);
+			    		if (currentNote < correctNoteTimestamps.size()) {
+			    			long waitFor = correctNoteTimestamps.get(currentNote) / 10 - correctNoteTimestamps.get(currentNote - 1) / 10 - 25;
+				    		Thread.sleep(offset < 0 ? waitFor + offset / 10000 : waitFor - offset / 10000);
+			    		}
 	                }
 			    } catch (InterruptedException e) {
 			        e.printStackTrace();
@@ -381,7 +387,7 @@ public class PianoExercise extends JPanel {
 	static class NoteEvent implements Comparable<NoteEvent> {
         int note;
         long tick;
-
+        
         public NoteEvent(int note, long tick) {
             this.note = note;
             this.tick = tick;
