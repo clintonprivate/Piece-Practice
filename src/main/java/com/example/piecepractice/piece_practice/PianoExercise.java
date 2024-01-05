@@ -209,9 +209,6 @@ public class PianoExercise extends JPanel {
 	}
 
 	private void startTrackingRhythm(long firstBeat) {
-		// Make firstBeat comparable
-		firstBeat = firstBeat / 100;
-		
 		// Loop through the correct timestamps on beat comparing the user's rhythm to the correct one.
 		new Thread(new Runnable() {
 			@Override
@@ -220,16 +217,29 @@ public class PianoExercise extends JPanel {
 				for (int correct : correctNoteTimestamps) {
 					try {
 						// Calculate the wait duration based on the distance to the next note.
+						int precisionTolerance = 1000;
 						int waitFor = (correct - lastCorrect) / 10;
-						Thread.sleep(waitFor);
+						Thread.sleep(waitFor + precisionTolerance);
 						
-						// Here we will do what we need to do with the rhythm.
-						System.out.println("Value: " + correct + " " +  lastCorrect + " " + waitFor);
+						// Loop through user timestamps, making it comparable and comparing it to the current rhythm
+						boolean found = false;
+						for (long input : userInputs) {
+							int comparable = (int) (input - firstBeat) / 100;
+							System.out.println(comparable + " vs " + correct);
+							if (comparable > correct - precisionTolerance && comparable < correct + precisionTolerance) {
+								System.out.println("Rhythm correct");
+								found = true;
+								break;
+							}
+						}
+						if (found == false) {
+							System.out.println("Rhythm wrong");
+						}
+						System.out.println();
 						
 						// Update last correct to be our current correct timestamp
 						lastCorrect = correct;
 					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}
