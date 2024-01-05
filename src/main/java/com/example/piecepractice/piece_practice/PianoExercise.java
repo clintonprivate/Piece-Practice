@@ -49,8 +49,8 @@ public class PianoExercise extends JPanel {
 	private boolean listening = false;
 	private static HelperMethods helperMethods = new HelperMethods();
 	private boolean userStartedPlaying = false;
-	List<Long> correctNoteTimestamps;
-	List<String[]> userInputs = new ArrayList<>();
+	List<Integer> correctNoteTimestamps;
+	List<Long> userInputs = new ArrayList<>();
 	
 	public PianoExercise(CardLayout layout) {
 		this.cardLayout = layout;
@@ -75,6 +75,7 @@ public class PianoExercise extends JPanel {
 		currentNote = 0;
 		currentNotePosition = 0;
 		userStartedPlaying = false;
+		userInputs.clear();
 		
 		byte[] imageBytes = Base64.getDecoder().decode(sheetMusicBase64);
         ByteArrayInputStream bis = new ByteArrayInputStream(imageBytes);
@@ -172,29 +173,21 @@ public class PianoExercise extends JPanel {
 			        Receiver receiver = new Receiver() {
 			            @Override
 			            public void send(MidiMessage message, long timeStamp) {
-			                // Paint the next note while handling rhythm tracking
-			            	long firstBeatInterval = 4000000L;
-			            	long precisionTolerance = 300000L;
 			                if (message instanceof ShortMessage) {
 			                    ShortMessage sm = (ShortMessage) message;
 			                    int note = sm.getData1();
 			                    int velocity = sm.getData2();
 			                    if (sm.getCommand() == ShortMessage.NOTE_ON && velocity > 0 && currentNote <= allNotes.size() - 1) {
-			                    	String playedNote = helperMethods.getNoteName(note);			                    	
-			                    	long closestFirstBeat = Math.round((double) timeStamp / firstBeatInterval) * firstBeatInterval;
-			                    	long offset = timeStamp - closestFirstBeat;
-			                    	if (userStartedPlaying == false && offset >= -precisionTolerance && offset <= precisionTolerance) {
-			                    	    userStartedPlaying = true;
-			                    	    userInputs.add(new String[]{playedNote, Long.toString(timeStamp)});
-			                    	    startTrackingRhythm(offset, timeStamp);
-			                    	}
-			                    	else if (userStartedPlaying && userInputs.size() < currentNote + 1) {
-			                    		userInputs.add(new String[]{playedNote, Long.toString(timeStamp)});
+			                    	String playedNote = helperMethods.getNoteName(note);
+			                    	userInputs.add(timeStamp);
+			                    	if (userStartedPlaying == false) {
+			                    		userStartedPlaying = true;
+			                    		startTrackingRhythm(timeStamp);
 			                    	}
 			                    }
 			                }
 			            }
-			            
+
 						@Override
 			            public void close() {
 			                // Close resources if needed
@@ -214,105 +207,36 @@ public class PianoExercise extends JPanel {
 			}
 		}).start();
 	}
-	
-	private void startTrackingRhythm(long firstBeatOffset, long startedAt) {
-		int precisionTolerance = 150000;
+
+	private void startTrackingRhythm(long firstBeat) {
+		// Make firstBeat comparable
+		firstBeat = firstBeat / 100;
+		
+		// Loop through the correct timestamps on beat comparing the user's rhythm to the correct one.
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-			    try {
-			    	while (currentNote < correctNoteTimestamps.size()) {
-			    		long timeStamp = 0;
-			    		if (userInputs.size() >= currentNote) {
-				    		long beatInterval = correctNoteTimestamps.get(currentNote - 1) * 100;
-				    		timeStamp = Long.valueOf(userInputs.get(currentNote - 1)[1]) - startedAt;
-				    		long offset = beatInterval - timeStamp;
-				    		String playedNote = userInputs.get(currentNote)[0];
-				    		if (offset > -precisionTolerance && offset < precisionTolerance) {
-				    			// Rhythm is correct
-				    			System.out.println("Rhythm Correct");
-				    			paintNextNote(playedNote);
-				    		}
-			    		}
-			    		else if (userInputs.size() < currentNote + 1) {
-			    			// Rhythm is wrong
-			    			System.out.println("Rhythm Wrong");
-			    			userInputs.add(new String[]{"X", "-500000"});
-			    			paintNextNote("X");
-			    		}
-			    		System.out.println(timeStamp);
-			    		if (currentNote < correctNoteTimestamps.size()) {
-			    			long waitFor = correctNoteTimestamps.get(currentNote) / 10 - correctNoteTimestamps.get(currentNote - 1) / 10 - 25;
-				    		Thread.sleep(firstBeatOffset < 0 ? waitFor + firstBeatOffset / 10000 : waitFor - firstBeatOffset / 10000);
-			    		}
-	                }
-			    } catch (InterruptedException e) {
-			        e.printStackTrace();
-			    }
+				int lastCorrect = 0;
+				for (int correct : correctNoteTimestamps) {
+					try {
+						// Calculate the wait duration based on the distance to the next note.
+						int waitFor = (correct - lastCorrect) / 10;
+						Thread.sleep(waitFor);
+						
+						// Here we will do what we need to do with the rhythm.
+						System.out.println("Value: " + correct + " " +  lastCorrect + " " + waitFor);
+						
+						// Update last correct to be our current correct timestamp
+						lastCorrect = correct;
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
 			}
 		}).start();
 	}
 	
-	private void paintNextNote(String playedNote) {
-		int averageNoteDistance = 138;
-		int startDistance = 390;
-		int width = bufferedImage.getWidth();
-	    int height = bufferedImage.getHeight();
-	    double averageNoteWidth = 50;
-	    double startX = currentNotePosition;
-	    double endX = 0;
-	    if (currentNote == 0) {
-	    	endX = currentNotePosition + startDistance;
-	    }
-	    else if (currentNote == allNotes.size() - 1) {
-	    	endX = width;
-	    	switchOrEndExercise();
-	    }
-	    else {
-	    	double note1 = getNotePositionAfter(startX + averageNoteWidth);
-	    	double note2 = getNotePositionAfter(note1 + averageNoteWidth);
-	    	endX = note2 - Math.round((note2 - note1)/2) + 10;
-	    }
-	    
-	    // Create a new BufferedImage with the same dimensions and type as the original image
-	    BufferedImage modifiedImage = new BufferedImage(width, height, bufferedImage.getType());
-
-	    // Get the graphics context from the modified image
-	    Graphics2D g = modifiedImage.createGraphics();
-
-	    // Draw the original image onto the modified image
-	    g.drawImage(bufferedImage, 0, 0, null);
-	    
-	    // Set the color to green for non-white pixels within the specified x range
-	    Color color = Color.GREEN;
-	    if (playedNote.equals(allNotes.get(currentNote))) {
-	    	color = Color.GREEN;
-	    	amountOfCorrectNotes++;
-	    }
-	    else {
-	    	color = Color.RED;
-	    }
-	    for (int y = 0; y < height; y++) {
-	        for (int x = (int) startX; x < endX && x < width; x++) {
-	            int pixel = bufferedImage.getRGB(x, y);
-	            if (pixel != Color.WHITE.getRGB()) {
-	                modifiedImage.setRGB(x, y, color.getRGB());
-	            }
-	        }
-	    }
-	    
-	    // Dispose the graphics context
-	    currentNote++;
-	    currentNotePosition = endX;
-	    g.dispose();
-
-	    // Update the bufferedImage with the modified image
-	    bufferedImage = modifiedImage;
-
-	    // Repaint the JPanel to display the updated image
-	    repaint();
-	}
-
 	private void switchOrEndExercise() {
 		Thread wait = new Thread(() -> {
             try {
@@ -350,53 +274,6 @@ public class PianoExercise extends JPanel {
         });
         wait.start();
 	}
-
-	public int getNotePositionAfter(double xCoordinate) {
-		// Load the image
-    	int clusterThreshold = 0;
-        int width = bufferedImage.getWidth();
-        int height = bufferedImage.getHeight();
-        
-        // Ensure the x coordinate is within the image bounds
-        if (xCoordinate >= width) {
-            return -1;
-        }
-
-        int consecutiveChanges = 0;
-        int previousPixelCount = 0;
-
-        for (int x = (int) xCoordinate; x < width; x++) {
-            int pixelsCount = 0;
-
-            // Scan vertically from the current x coordinate
-            for (int y = 0; y < height; y++) {
-                int pixel = bufferedImage.getRGB(x, y);
-                int red = (pixel >> 16) & 0xff;
-                int green = (pixel >> 8) & 0xff;
-                int blue = (pixel) & 0xff;
-
-                // Check if the pixel is not white (assuming RGB format)
-                if (red + green + blue < 765) {
-                    pixelsCount++;
-                }
-            }
-
-            // Check for a rapid change in pixel count
-            if (Math.abs(previousPixelCount - pixelsCount) > clusterThreshold) {
-                consecutiveChanges++;
-                if (consecutiveChanges > 5) { // Adjust the number of consecutive changes needed
-                    return x - consecutiveChanges; // Return the start of the cluster
-                }
-            } else {
-                consecutiveChanges = 0;
-            }
-
-            previousPixelCount = pixelsCount;
-        }
-
-        // If no cluster is found, return -1
-        return -1;
-    }
 	
 	static class NoteEvent implements Comparable<NoteEvent> {
         int note;
@@ -452,10 +329,10 @@ public class PianoExercise extends JPanel {
 		initializeComponents('a');
 	}
 
-	private List<Long> extractNoteTimestamps(Sequence sequence) {
+	private List<Integer> extractNoteTimestamps(Sequence sequence) {
 		// A sequence consists of tracks; each track contains MIDI events
         Track[] tracks = sequence.getTracks();
-        List<Long> timestamps = new ArrayList<>();
+        List<Integer> timestamps = new ArrayList<>();
 
         // Iterate through tracks and extract timestamps of note events
         for (Track track : tracks) {
@@ -465,7 +342,7 @@ public class PianoExercise extends JPanel {
 
                 // Check if the MIDI message is a Note On event (Note Off events can also be considered)
                 if (message instanceof ShortMessage && ((ShortMessage) message).getCommand() == ShortMessage.NOTE_ON) {
-                    long timestamp = event.getTick();
+                    int timestamp = (int) event.getTick();
                     timestamps.add(timestamp);
                 }
             }
@@ -473,18 +350,5 @@ public class PianoExercise extends JPanel {
 
         return timestamps;
 	}
-	
-	private int roundToNearestThousand(long waitFor) {
-        // Divide the number by 1000 to get a decimal value
-        double divided = waitFor / 1000.0;
-        
-        // Round the decimal value to the nearest whole number
-        double rounded = Math.round(divided);
-        
-        // Multiply the rounded whole number by 1000 to get the nearest thousand
-        int result = (int) (rounded * 1000);
-        
-        return result;
-    }
 }
 
