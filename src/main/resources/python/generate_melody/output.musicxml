@@ -14,12 +14,12 @@
     </scaling>
   </defaults>
   <part-list>
-    <score-part id="Pa81ab32d7c2f85b008a4a282c5572720">
+    <score-part id="Pa14a2204846296c5b025f94e5cd4bbee">
       <part-name />
     </score-part>
   </part-list>
   <!--=========================== Part 1 ===========================-->
-  <part id="Pa81ab32d7c2f85b008a4a282c5572720">
+  <part id="Pa14a2204846296c5b025f94e5cd4bbee">
     <!--========================= Measure 1 ==========================-->
     <measure implicit="no" number="1">
       <attributes>
@@ -38,8 +38,7 @@
       </attributes>
       <note>
         <pitch>
-          <step>F</step>
-          <alter>1</alter>
+          <step>G</step>
           <octave>4</octave>
         </pitch>
         <duration>40320</duration>
@@ -50,36 +49,18 @@
     <measure implicit="no" number="2">
       <note>
         <pitch>
-          <step>G</step>
+          <step>A</step>
           <octave>4</octave>
         </pitch>
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <pitch>
-          <step>F</step>
-          <alter>1</alter>
-          <octave>4</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <pitch>
-          <step>E</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
+        <duration>40320</duration>
+        <type>whole</type>
       </note>
     </measure>
     <!--========================= Measure 3 ==========================-->
     <measure implicit="no" number="3">
       <note>
         <pitch>
-          <step>F</step>
-          <alter>1</alter>
+          <step>G</step>
           <octave>4</octave>
         </pitch>
         <duration>40320</duration>
@@ -90,27 +71,11 @@
     <measure implicit="no" number="4">
       <note>
         <pitch>
-          <step>G</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <pitch>
           <step>A</step>
           <octave>4</octave>
         </pitch>
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <pitch>
-          <step>G</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
+        <duration>40320</duration>
+        <type>whole</type>
       </note>
       <barline location="right">
         <bar-style>light-heavy</bar-style>

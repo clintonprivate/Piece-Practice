@@ -49,7 +49,7 @@ public class PianoExercise extends JPanel {
 	private static HelperMethods helperMethods = new HelperMethods();
 	private boolean userStartedPlaying = false;
 	List<Integer> correctNoteTimestamps;
-	List<Long> userInputs = new ArrayList<>();
+	List<String[]> userInputs = new ArrayList<>();
 	
 	public PianoExercise(CardLayout layout) {
 		this.cardLayout = layout;
@@ -178,7 +178,7 @@ public class PianoExercise extends JPanel {
 			                    int velocity = sm.getData2();
 			                    if (sm.getCommand() == ShortMessage.NOTE_ON && velocity > 0 && currentNote <= allNotes.size() - 1) {
 			                    	String playedNote = helperMethods.getNoteName(note);
-			                    	userInputs.add(timeStamp);
+			                    	userInputs.add(new String[]{playedNote, Long.toString(timeStamp)});
 			                    	if (userStartedPlaying == false) {
 			                    		userStartedPlaying = true;
 			                    		startTrackingRhythm(timeStamp);
@@ -225,20 +225,22 @@ public class PianoExercise extends JPanel {
 						Thread.sleep(waitFor + precisionTolerance - (previousCorrect ? offset : 0));
 						
 						// Check if the next user timestamp is correct
-						long userTimestamp = userInputs.get(currentNote);
+						long userTimestamp = Long.valueOf(userInputs.get(currentNote)[1]);
+						String playedNote = userInputs.get(currentNote)[0];
 						int comparable = (int) (userTimestamp - firstBeat) / 100;
 						System.out.println(comparable + " vs " + correct);
 					    if (comparable >= correct - precisionTolerance && comparable <= correct + precisionTolerance) {
 							System.out.println("Rhythm correct");
+							paintNextNote(playedNote);
 							previousCorrect = true;
 						}
 						else {
 							System.out.println("Rhythm wrong");
+							paintNextNote("X");
 							previousCorrect = false;
 						}
 						
 						// Update last correct to be our current correct timestamp
-						currentNote++;
 						offset = comparable - correct;
 						lastCorrect = correct;
 					} catch (InterruptedException e) {
@@ -248,6 +250,113 @@ public class PianoExercise extends JPanel {
 			}
 		}).start();
 	}
+	
+	private void paintNextNote(String playedNote) {
+		int averageNoteDistance = 138;
+		int startDistance = 390;
+		int width = bufferedImage.getWidth();
+	    int height = bufferedImage.getHeight();
+	    double averageNoteWidth = 50;
+	    double startX = currentNotePosition;
+	    double endX = 0;
+	    if (currentNote == 0) {
+	    	endX = currentNotePosition + startDistance;
+	    }
+	    else if (currentNote == allNotes.size() - 1) {
+	    	endX = width;
+	    	switchOrEndExercise();
+	    }
+	    else {
+	    	double note1 = getNotePositionAfter(startX + averageNoteWidth);
+	    	double note2 = getNotePositionAfter(note1 + averageNoteWidth);
+	    	endX = note2 - Math.round((note2 - note1)/2) + 10;
+	    }
+	    
+	    // Create a new BufferedImage with the same dimensions and type as the original image
+	    BufferedImage modifiedImage = new BufferedImage(width, height, bufferedImage.getType());
+
+	    // Get the graphics context from the modified image
+	    Graphics2D g = modifiedImage.createGraphics();
+
+	    // Draw the original image onto the modified image
+	    g.drawImage(bufferedImage, 0, 0, null);
+	    
+	    // Set the color to green for non-white pixels within the specified x range
+	    Color color = Color.GREEN;
+	    if (playedNote.equals(allNotes.get(currentNote))) {
+	    	color = Color.GREEN;
+	    	amountOfCorrectNotes++;
+	    }
+	    else {
+	    	color = Color.RED;
+	    }
+	    for (int y = 0; y < height; y++) {
+	        for (int x = (int) startX; x < endX && x < width; x++) {
+	            int pixel = bufferedImage.getRGB(x, y);
+	            if (pixel != Color.WHITE.getRGB()) {
+	                modifiedImage.setRGB(x, y, color.getRGB());
+	            }
+	        }
+	    }
+	    
+	    // Dispose the graphics context
+	    currentNote++;
+	    currentNotePosition = endX;
+	    g.dispose();
+
+	    // Update the bufferedImage with the modified image
+	    bufferedImage = modifiedImage;
+
+	    // Repaint the JPanel to display the updated image
+	    repaint();
+	}
+	
+	public int getNotePositionAfter(double xCoordinate) {
+		// Load the image
+    	int clusterThreshold = 0;
+        int width = bufferedImage.getWidth();
+        int height = bufferedImage.getHeight();
+        
+        // Ensure the x coordinate is within the image bounds
+        if (xCoordinate >= width) {
+            return -1;
+        }
+
+        int consecutiveChanges = 0;
+        int previousPixelCount = 0;
+
+        for (int x = (int) xCoordinate; x < width; x++) {
+            int pixelsCount = 0;
+
+            // Scan vertically from the current x coordinate
+            for (int y = 0; y < height; y++) {
+                int pixel = bufferedImage.getRGB(x, y);
+                int red = (pixel >> 16) & 0xff;
+                int green = (pixel >> 8) & 0xff;
+                int blue = (pixel) & 0xff;
+
+                // Check if the pixel is not white (assuming RGB format)
+                if (red + green + blue < 765) {
+                    pixelsCount++;
+                }
+            }
+
+            // Check for a rapid change in pixel count
+            if (Math.abs(previousPixelCount - pixelsCount) > clusterThreshold) {
+                consecutiveChanges++;
+                if (consecutiveChanges > 5) { // Adjust the number of consecutive changes needed
+                    return x - consecutiveChanges; // Return the start of the cluster
+                }
+            } else {
+                consecutiveChanges = 0;
+            }
+
+            previousPixelCount = pixelsCount;
+        }
+
+        // If no cluster is found, return -1
+        return -1;
+    }
 	
 	private void switchOrEndExercise() {
 		Thread wait = new Thread(() -> {
