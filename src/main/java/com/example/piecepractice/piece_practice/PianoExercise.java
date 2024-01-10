@@ -38,7 +38,6 @@ public class PianoExercise extends JPanel {
 	private CardLayout cardLayout;
 	private BufferedImage bufferedImage;
 	private JPanel sheetMusic;
-	private int currentNote = 0;
 	private double currentNotePosition = 0;
 	private int beatsPerMinute = 60;
 	private List<String> allNotes;
@@ -208,36 +207,39 @@ public class PianoExercise extends JPanel {
 		}).start();
 	}
 
+	private int currentNote = 0;
+	
 	private void startTrackingRhythm(long firstBeat) {
 		// Loop through the correct timestamps on beat comparing the user's rhythm to the correct one.
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
 				int lastCorrect = 0;
+				int offset = 0;
+				boolean previousCorrect = true;
 				for (int correct : correctNoteTimestamps) {
 					try {
 						// Calculate the wait duration based on the distance to the next note.
 						int precisionTolerance = 1000;
 						int waitFor = (correct - lastCorrect) / 10;
-						Thread.sleep(waitFor + precisionTolerance);
+						Thread.sleep(waitFor + precisionTolerance - (previousCorrect ? offset : 0));
 						
-						// Loop through user timestamps, making it comparable and comparing it to the current rhythm
-						boolean found = false;
-						for (long input : userInputs) {
-							int comparable = (int) (input - firstBeat) / 100;
-							System.out.println(comparable + " vs " + correct);
-							if (comparable > correct - precisionTolerance && comparable < correct + precisionTolerance) {
-								System.out.println("Rhythm correct");
-								found = true;
-								break;
-							}
+						// Check if the next user timestamp is correct
+						long userTimestamp = userInputs.get(currentNote);
+						int comparable = (int) (userTimestamp - firstBeat) / 100;
+						System.out.println(comparable + " vs " + correct);
+					    if (comparable >= correct - precisionTolerance && comparable <= correct + precisionTolerance) {
+							System.out.println("Rhythm correct");
+							previousCorrect = true;
 						}
-						if (found == false) {
+						else {
 							System.out.println("Rhythm wrong");
+							previousCorrect = false;
 						}
-						System.out.println();
 						
 						// Update last correct to be our current correct timestamp
+						currentNote++;
+						offset = comparable - correct;
 						lastCorrect = correct;
 					} catch (InterruptedException e) {
 						e.printStackTrace();

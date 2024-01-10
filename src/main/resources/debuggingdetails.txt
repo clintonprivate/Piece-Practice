@@ -1,0 +1,4 @@
+Issue: Can't really wait for note to be pressed after the beat because it will get the entire beat shifted
+by the threshold and then it gets more and more shifted with time.
+
+Solution: Sleep through to threshold and subtract time was played from wait time.
