@@ -1,0 +1,19 @@
+We'll create a new python script tasked with picking a random song musicxml.
+What it will do after picking a song is that it should find the longest part
+of the song that has a max of 1 intervals each between the notes, as well
+as shortest note, as well as max chord quantity. If the user's most difficult
+learned clef is treble then it will omit the bass clef. If it's bass clef,
+it will also still omit bass clef and if it's treble and bass clef, then
+it should include the bass clef. Finally it should transpose that portion
+of the song into the latest key signature that the user is learning. As usual
+it should return a midi file and a sheet music image and be used to do the
+same thing as in PianoExercise.java. Make it that Levels.java, after every 5
+levels inserts a playtime level button in between. Then on level button click,
+if the button text == "Playtime Level", pass PianoExercise.java a boolean
+that says true, meaning that it should be a playtime level. Then set up
+PianoExercise.java to use songsyoulike.py instead of generatemelody.py to
+generate the melody, if the boolean for playtime is set to true. And you're
+done. After every 5 levels now, the user is kept engaged by getting to play
+songs they like. Make sure to write the name of the song that was picked as
+well so that the user listens out for it and recognizes it, in case its a really
+short portion of a song they like.

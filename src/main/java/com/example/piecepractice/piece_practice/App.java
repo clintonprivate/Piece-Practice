@@ -35,5 +35,7 @@ public class App {
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.setLocationRelativeTo(null);
 		f.setVisible(true);
+		
+		System.out.println(Math.ceil(88.2));
 	}  
 }  

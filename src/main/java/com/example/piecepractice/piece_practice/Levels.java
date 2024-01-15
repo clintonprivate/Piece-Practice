@@ -23,8 +23,9 @@ public class Levels extends JPanel {
 	
 	private double levelAmount;
 	private double maxPages;
-	private double currentPage;
+	private double currentPage = 1;
 	private double currentLevel;
+	private int playtimeLevelsSoFar = 0;
 	
 	private void initializeComponents() {
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -42,6 +43,7 @@ public class Levels extends JPanel {
 		percentageBar.setBackground(Color.gray);
 		percentageBar.setBounds(50, 100, screenSize.width - 100, 10);
 		levelAmount = percentageBar.getLevelAmount();
+		levelAmount = levelAmount + Math.floor(levelAmount / 5);
 		currentLevel = percentageBar.getCurrentLevel();
 		maxPages = Math.ceil(levelAmount / 5);
 		this.add(percentageBar);
@@ -126,12 +128,21 @@ public class Levels extends JPanel {
 			double firstLevelOnThisPage = 5 * currentPage - 4;
 			for (int i = 0; i < buttonAmount; i++) {
 				LevelButton b;
+				String buttonText = "";
+				if ((firstLevelOnThisPage + i) % 6 == 0) {
+					buttonText = "Playtime";
+					playtimeLevelsSoFar++;
+				}
+				else {
+					buttonText = "Level " + String.valueOf((int) firstLevelOnThisPage + i - playtimeLevelsSoFar);
+				}
+				
 				if (firstLevelOnThisPage + i <= currentLevel) {
-					b = new LevelButton("Level " + String.valueOf((int) firstLevelOnThisPage + i), true);
+					b = new LevelButton(buttonText, true);
 					b.setBackground(Color.green);
 				}
 				else {
-					b = new LevelButton("Level " + String.valueOf((int) firstLevelOnThisPage + i), false);
+					b = new LevelButton(buttonText, false);
 					b.setBackground(Color.gray);
 				}
 				b.setForeground(Color.white);
