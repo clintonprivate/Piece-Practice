@@ -58,13 +58,14 @@ public class Levels extends JPanel {
 		}
 		for (int i = 0; i < buttonAmount; i++) {
 			LevelButton b;
+			String buttonText = "Level " + String.valueOf(i + 1);
 			double level = i + 1;
 			if (i + 1 <= currentLevel) {
-				b = new LevelButton("Level " + String.valueOf(i + 1), true);
+				b = new LevelButton(buttonText, true);
 				b.setBackground(Color.green);
 			}
 			else {
-				b = new LevelButton("Level " + String.valueOf(i + 1), false);
+				b = new LevelButton(buttonText, false);
 				b.setBackground(Color.gray);
 			}
 			b.setForeground(Color.white);
@@ -72,7 +73,7 @@ public class Levels extends JPanel {
 			b.addActionListener(new ActionListener() {
 	            @Override
 	            public void actionPerformed(ActionEvent e) {
-	                playExercise((int) level);
+	                playExercise(b);
 	            }
 	        });
 			this.add(b);
@@ -147,6 +148,12 @@ public class Levels extends JPanel {
 				}
 				b.setForeground(Color.white);
 				b.setBounds(135 + 230 * i, 280, 100, 100);
+				b.addActionListener(new ActionListener() {
+		            @Override
+		            public void actionPerformed(ActionEvent e) {
+		                playExercise(b);
+		            }
+		        });
 				this.add(b);
 	        }
 		}
@@ -185,17 +192,21 @@ public class Levels extends JPanel {
 		}
 	}
 	
-	protected void playExercise(int level) {
-
-		if (level <= currentLevel) {
-			// Take them to the card "Piano Exercise" and
-			// pass it the level attributes as an argument
-			pianoExercise.setLevel(level);
+	protected void playExercise(LevelButton b) {
+		String buttonString = b.getText();
+		if (buttonString.contains("Level")) {
+			int level = Integer.parseInt(buttonString.substring(buttonString.indexOf(' ') + 1));
+			if (level <= currentLevel) {
+				pianoExercise.setLevel(false, level);
+				cardLayout.show(getParent(), "Piano Exercise");
+			}
+		}
+		else if (buttonString.equals("Playtime") && b.getBackground() == Color.green) {
+			pianoExercise.setLevel(true, 5);
 			cardLayout.show(getParent(), "Piano Exercise");
 		}
 	}
 	
-
 	public void update() {
 		this.removeAll();
 		initializeComponents();

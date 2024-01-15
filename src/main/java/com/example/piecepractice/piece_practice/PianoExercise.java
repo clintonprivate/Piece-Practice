@@ -50,6 +50,7 @@ public class PianoExercise extends JPanel {
 	private boolean userStartedPlaying = false;
 	List<Integer> correctNoteTimestamps;
 	List<String[]> userInputs = new ArrayList<>();
+	private static boolean isPlaytimeLevel = false;
 	
 	public PianoExercise(CardLayout layout) {
 		this.cardLayout = layout;
@@ -132,9 +133,10 @@ public class PianoExercise extends JPanel {
 	private static String[] generateRandomMelody() {
 	    String[] javaArray = null;
 	    try {
+	    	String scriptToUse = isPlaytimeLevel ? "songsyoulike.py" : "generatemelody.py";
 	        String[] command = {
 	            "python",
-	            "src/main/resources/python/generate_melody/generatemelody.py",
+	            "src/main/resources/python/generate_melody/" + scriptToUse,
 	            levelAttributes + " Mixed |"
 	        };
 	        ProcessBuilder processBuilder = new ProcessBuilder(command);
@@ -153,7 +155,7 @@ public class PianoExercise extends JPanel {
 	                javaArray[i] = javaArray[i].replaceAll("'", "").trim();
 	            }
 	        } else {
-	            System.err.println("Python script execution failed");
+	            System.err.println("Python script execution failed.");
 	        }
 	    } catch (IOException | InterruptedException e) {
 	        e.printStackTrace();
@@ -445,8 +447,9 @@ public class PianoExercise extends JPanel {
         return noteNames;
     }
 	
-	public void setLevel(int level) {
+	public void setLevel(boolean playtimeLevel, int level) {
 		levelAttributes = helperMethods.getLevelAttributes(level);
+		isPlaytimeLevel = playtimeLevel;
 		initializeComponents('a');
 	}
 
