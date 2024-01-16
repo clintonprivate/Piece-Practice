@@ -6,7 +6,7 @@ from PIL import Image
 from music21 import *
 
 basedirectory = ""
-songsDirectory = os.path.join(os.getcwd(), "songsyoulike")
+songsDirectory = "C:\\Users\\pc\\eclipse-workspace\\piece-practice\\src\\main\\resources\\sounds\\songsyoulike"
 snippetCriteria = "| D major | Treble clef | Single note | Intervals of 1 | Sixteenth note |"
 d_major_scale = ["B3",
                  "C4", "C#4", "D4", "E4", "F#4", "G4", "A4", "B4",
@@ -101,4 +101,4 @@ def extractPlayableSnippet(inputFile):
     # Print returnToJava contents for Java
     print(returnToJava)
 
-extractPlayableSnippet("src/main/resources/sounds/songsyoulike/Shining Star.mid")
+extractPlayableSnippet("src/main/resources/sounds/" + pickRandomSong())

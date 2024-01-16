@@ -137,7 +137,7 @@ public class PianoExercise extends JPanel {
 	        String[] command = {
 	            "python",
 	            "src/main/resources/python/generate_melody/" + scriptToUse,
-	            levelAttributes + " Mixed |"
+	            levelAttributes
 	        };
 	        ProcessBuilder processBuilder = new ProcessBuilder(command);
 	        Process process = processBuilder.start();
@@ -155,7 +155,14 @@ public class PianoExercise extends JPanel {
 	                javaArray[i] = javaArray[i].replaceAll("'", "").trim();
 	            }
 	        } else {
-	            System.err.println("Python script execution failed.");
+	        	BufferedReader errorReader = new BufferedReader(new InputStreamReader(process.getErrorStream()));
+	            StringBuilder errorOutput = new StringBuilder();
+	            String errorLine;
+	            while ((errorLine = errorReader.readLine()) != null) {
+	                errorOutput.append(errorLine).append("\n");
+	            }
+
+	            System.err.println("Python script execution failed. Error output:\n" + errorOutput.toString());
 	        }
 	    } catch (IOException | InterruptedException e) {
 	        e.printStackTrace();
