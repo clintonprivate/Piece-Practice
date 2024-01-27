@@ -233,11 +233,15 @@ public class PianoExercise extends JPanel {
 						int waitFor = (correct - lastCorrect) / 10;
 						Thread.sleep(waitFor + precisionTolerance - (previousCorrect ? offset : 0));
 						
-						// Check if the next user timestamp is correct
-						long userTimestamp = Long.valueOf(userInputs.get(currentNote)[1]);
-						String playedNote = userInputs.get(currentNote)[0];
-						int comparable = (int) (userTimestamp - firstBeat) / 100;
-						System.out.println(comparable + " vs " + correct);
+						int comparable = 0;
+						String playedNote = null;
+						// Check if the next user timestamp is 
+						if (userInputs.size() == currentNote + 1) {
+							Long userTimestamp = Long.valueOf(userInputs.get(currentNote)[1]);
+							playedNote = userInputs.get(currentNote)[0];
+							comparable = (int) (userTimestamp - firstBeat) / 100;
+							System.out.println(comparable + " vs " + correct);
+						}
 					    if (comparable >= correct - precisionTolerance && comparable <= correct + precisionTolerance) {
 							System.out.println("Rhythm correct");
 							paintNextNote(playedNote);
